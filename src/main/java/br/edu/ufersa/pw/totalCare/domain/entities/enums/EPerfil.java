@@ -1,4 +1,4 @@
-package br.edu.ufersa.pw.totalCare.models.enums;
+package br.edu.ufersa.pw.totalCare.domain.entities.enums;
 
 public enum EPerfil {
     ADMIN,
