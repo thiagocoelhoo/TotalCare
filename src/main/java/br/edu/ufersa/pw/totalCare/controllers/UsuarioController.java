@@ -12,13 +12,18 @@ import br.edu.ufersa.pw.totalCare.dtos.UsuarioDTO;
 import br.edu.ufersa.pw.totalCare.models.Usuario;
 import br.edu.ufersa.pw.totalCare.services.UsuarioService;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 
 @RestController
-@RequestMapping("/api/v1/usuario")
+@RequestMapping("/api/v1/usuarios")
 public class UsuarioController {
 
     @Autowired
@@ -27,6 +32,11 @@ public class UsuarioController {
     @GetMapping("/list")
     public ResponseEntity<List<Usuario>> buscarTodos(){
         return usuarioService.buscarTodos();
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Usuario> buscarPorId(@PathVariable Long id){
+        return usuarioService.buscarPorId(id);
     }
 
     @PostMapping("/create")
@@ -38,7 +48,28 @@ public class UsuarioController {
     } catch (Exception e){
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
     }
+    }
+
+    @PutMapping("/update")
+    public ResponseEntity<Usuario> atualizarUsuario(@RequestBody UsuarioDTO usuarioDto){
+        try{
+            ResponseEntity<Usuario> responseEntity = usuarioService.atualizarUsuario(usuarioDto);
+            Usuario usuarioAtualizado = responseEntity.getBody();
+            return ResponseEntity.status(HttpStatus.OK).body(usuarioAtualizado);
+        } catch (Exception e){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+        }
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<String> deletarUsuario(@PathVariable Long id){
+        try{
+            usuarioService.deletarUsuario(id);
+            return ResponseEntity.status(HttpStatus.OK).body("Usuário deletado com sucesso");
+        } catch (Exception e){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Erro ao deletar usuário");
+        }
+    }
     
 }
 
-}

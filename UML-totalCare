@@ -1,0 +1,77 @@
+# Funcionalidade
+ 1. CRUD pacientes
+ 2. CRUD consultas
+ 3. CRUD prontuários
+ 4. Imprimir prontuário (front)
+ 5. Imprimir receita (front)
+ 6. Autenticação
+ 7. Telas de administrador
+-----------------------
+ 8. Tela para cliente acessar receita/prontuário (n)
+ 9. Gerenciar leitos (n)
+10. Receber pagamentos (n)
+
+# Entidades
+- Usuário
+    Long id
+    String email
+    String senha
+    DateTime dataCadastro
+    Perfil perfil
+
+- Perfil
+    String Nome
+    String Sobrenome
+    Stirng Email
+    String CPF
+    String Telefone
+    String Endereço
+    String Bairro
+    Int TipoUsuario
+    String CPF
+    String RG
+
+- Médico (inhrerits Usuário)
+    String CRM
+    String Especialidade
+
+- Atendente (inherits Usuário)
+
+- Paciente
+    Long Id
+    String Nome
+    String Sobrenome
+    String CPF
+    String RG
+    String CEP
+    String Endereço
+    String Bairro
+    String TipoSanguineo
+    String Telefone
+    String Alergias
+
+- Prontuário
+    Paciente Paciente
+    String Conteudo
+
+- Receita
+    Paciente Paciente
+    Médico Medico
+    String Conteudo
+    DateTime Data
+
+- Consulta
+    Long Id
+    Paciente Paciente
+    Medico Medico
+    DateTime Data
+    Int Urgencia
+    Int Estado (Finalizado, Cancelado, Aguardando)
+
+# Requisitos para a disciplina
+- 3 ou 4 controllers
+- 3 services
+- Nada mais
+-
+- ALTER USER 'root'@'localhost' IDENTIFIED BY 'parede123';
+FLUSH PRIVILEGES;
