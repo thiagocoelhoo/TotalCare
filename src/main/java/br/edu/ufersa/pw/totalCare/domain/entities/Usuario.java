@@ -1,4 +1,4 @@
-package br.edu.ufersa.pw.totalCare.models;
+package br.edu.ufersa.pw.totalCare.domain.entities;
 
 
 import jakarta.persistence.Column;

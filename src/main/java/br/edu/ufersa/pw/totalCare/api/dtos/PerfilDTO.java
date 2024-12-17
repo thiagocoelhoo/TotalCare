@@ -1,23 +1,8 @@
-package br.edu.ufersa.pw.totalCare.models;
+package br.edu.ufersa.pw.totalCare.api.dtos;
 
-import java.io.Serializable;
+public class PerfilDTO {
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-
-@Entity
-@Table(name = "perfil")
-public class Perfil implements Serializable {
-
-    private static final long serialVersionUID = 1L;
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String nome;
     private String sobrenome;
     private String email;
@@ -29,11 +14,12 @@ public class Perfil implements Serializable {
     private String rg;
 
     // Construtores
-    public Perfil() {
+    public PerfilDTO() {
     }
 
-    public Perfil(String nome, String sobrenome, String email, String cpf, String telefone, 
-                  String endereco, String bairro, Integer tipoUsuario, String rg) {
+    public PerfilDTO(Long id, String nome, String sobrenome, String email, String cpf, String telefone, 
+                     String endereco, String bairro, Integer tipoUsuario, String rg) {
+        this.id = id;
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.email = email;

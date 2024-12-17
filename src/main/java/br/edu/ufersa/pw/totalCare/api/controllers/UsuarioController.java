@@ -1,4 +1,4 @@
-package br.edu.ufersa.pw.totalCare.controllers;
+package br.edu.ufersa.pw.totalCare.api.controllers;
 
 import java.util.List;
 
@@ -8,9 +8,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.edu.ufersa.pw.totalCare.dtos.UsuarioDTO;
-import br.edu.ufersa.pw.totalCare.models.Usuario;
-import br.edu.ufersa.pw.totalCare.services.UsuarioService;
+import br.edu.ufersa.pw.totalCare.api.dtos.UsuarioDTO;
+import br.edu.ufersa.pw.totalCare.domain.entities.Usuario;
+import br.edu.ufersa.pw.totalCare.domain.services.UsuarioService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;

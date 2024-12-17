@@ -7,10 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import br.edu.ufersa.pw.totalCare.dtos.UsuarioDTO;
-import br.edu.ufersa.pw.totalCare.models.Usuario;
-import br.edu.ufersa.pw.totalCare.repositories.PerfilRepository;
-import br.edu.ufersa.pw.totalCare.repositories.UsuarioRepository;
+import br.edu.ufersa.pw.totalCare.api.dtos.UsuarioDTO;
+import br.edu.ufersa.pw.totalCare.domain.entities.Usuario;
+import br.edu.ufersa.pw.totalCare.domain.repositories.PerfilRepository;
+import br.edu.ufersa.pw.totalCare.domain.repositories.UsuarioRepository;
 
 @Service
 public class UsuarioService {
@@ -26,7 +26,6 @@ public class UsuarioService {
     }
 
     public Usuario criarUsuario(UsuarioDTO usuarioDto){
-        
         Usuario usuario = new Usuario();
         usuario.setEmail(usuarioDto.getEmail());
         usuario.setSenha(usuarioDto.getSenha());
@@ -34,7 +33,7 @@ public class UsuarioService {
         usuario.setPerfil(null);
 
         //TODO: FAZER A BUSCA DO PERFIL DEPOIS DE CRIAR A CRIAÇÃO DO PERFIL
-
+        
         // Perfil perfil = perfilRepository.findById(usuarioDto.getPerfil().getId())
         // .orElse(new Perfil("USUARIO", null, null, null, null, null, null, null, null));
 

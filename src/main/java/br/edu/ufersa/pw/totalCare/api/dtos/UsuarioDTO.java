@@ -1,8 +1,8 @@
-package br.edu.ufersa.pw.totalCare.dtos;
+package br.edu.ufersa.pw.totalCare.api.dtos;
 
 import java.time.LocalDateTime;
 
-import br.edu.ufersa.pw.totalCare.models.Perfil;
+import br.edu.ufersa.pw.totalCare.domain.entities.Perfil;
 
 public class UsuarioDTO {
 
