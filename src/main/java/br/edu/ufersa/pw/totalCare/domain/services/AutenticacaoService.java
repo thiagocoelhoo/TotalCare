@@ -23,12 +23,10 @@ public class AutenticacaoService {
             throw new RuntimeException("Usuário não encontrado");
         }
 
-        // Comparação direta de senha (sem criptografia)
         if (!senha.equals(usuario.getSenha())) {
             throw new RuntimeException("Senha incorreta");
         }
 
-        // Criação do UsuarioDTO para o TokenService
         UsuarioDTO usuarioDTO = new UsuarioDTO(
             usuario.getId(),
             usuario.getEmail(),
@@ -37,7 +35,6 @@ public class AutenticacaoService {
             usuario.getPerfil()
         );
 
-        // Geração do token JWT
         return tokenService.generateToken(usuarioDTO);
     }
 }

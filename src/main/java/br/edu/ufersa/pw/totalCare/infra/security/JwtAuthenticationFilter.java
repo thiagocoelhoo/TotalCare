@@ -17,16 +17,13 @@ import java.io.IOException;
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     @Autowired
-    private TokenService tokenService;  // Usando o TokenService que você já tem
-
+    private TokenService tokenService; 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws ServletException, IOException {
         String token = extractJwtFromRequest(request);
 
         if (token != null && tokenService.validateToken(token) != null) {
-            String username = tokenService.validateToken(token);  // Obtendo o usuário do token
-
-            // Configurando a autenticação no contexto de segurança do Spring
+            String username = tokenService.validateToken(token); 
             UsernamePasswordAuthenticationToken authentication =
                 new UsernamePasswordAuthenticationToken(username, null, null);
             SecurityContextHolder.getContext().setAuthentication(authentication);
@@ -36,11 +33,10 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         chain.doFilter(request, response);
     }
 
-    // Método para extrair o token do cabeçalho "Authorization"
     private String extractJwtFromRequest(HttpServletRequest request) {
         String header = request.getHeader("Authorization");
         if (header != null && header.startsWith("Bearer ")) {
-            return header.substring(7);  // Retorna o token sem a parte "Bearer "
+            return header.substring(7); 
         }
         return null;
     }

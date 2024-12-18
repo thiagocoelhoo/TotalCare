@@ -30,11 +30,9 @@ public class Usuario {
     @JoinColumn(name = "perfil_id")
     private Perfil perfil;
 
-    // Construtor vazio
     public Usuario() {
     }
 
-    // Construtor full (data e id são gerados)
     public Usuario(String email, String senha, LocalDateTime dataCadastro, Perfil perfil) {
         this.email = email;
         this.senha = senha;

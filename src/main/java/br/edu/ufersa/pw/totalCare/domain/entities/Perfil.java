@@ -28,7 +28,6 @@ public class Perfil implements Serializable {
     private Integer tipoUsuario;
     private String rg;
 
-    // Construtores
     public Perfil() {
     }
 
@@ -45,7 +44,6 @@ public class Perfil implements Serializable {
         this.rg = rg;
     }
 
-    // Getters e Setters
     public Long getId() {
         return id;
     }

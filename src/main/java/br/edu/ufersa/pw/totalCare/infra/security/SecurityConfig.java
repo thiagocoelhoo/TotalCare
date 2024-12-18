@@ -17,14 +17,14 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        // Configurações de segurança
+ 
         http.csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers("/api/v1/auth/login").permitAll()
-                .requestMatchers("/api/v1/usuarios").authenticated()  // Permitir acesso sem autenticação
-                .anyRequest().authenticated()  // Exigir autenticação para outras requisições
+                .requestMatchers("/api/v1/usuarios").authenticated()
+                .anyRequest().authenticated()
             );
-        // Adiciona o filtro de autenticação JWT antes do filtro de autenticação padrão do Spring Security
+
         http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
