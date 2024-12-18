@@ -1,4 +1,4 @@
-package br.edu.ufersa.pw.totalCare.services;
+package br.edu.ufersa.pw.totalCare.domain.services;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -26,9 +26,6 @@ public class UsuarioService {
     }
 
     public Usuario criarUsuario(UsuarioDTO usuarioDto){
-        
-
-
         Usuario usuario = new Usuario();
         usuario.setEmail(usuarioDto.getEmail());
         usuario.setSenha(usuarioDto.getSenha());
@@ -43,5 +40,28 @@ public class UsuarioService {
         // usuario.setPerfil(perfil);
 
         return usuarioRepository.save(usuario);
+    }
+
+    public ResponseEntity<Usuario> buscarPorId(Long id){
+        return ResponseEntity.ok(usuarioRepository.findById(id).orElse(null));
+    }
+
+    public ResponseEntity<Usuario> atualizarUsuario(UsuarioDTO usuarioDto){
+        Usuario usuario = usuarioRepository.findById(usuarioDto.getId()).orElse(null);
+        if(usuario != null){
+            usuario.setEmail(usuarioDto.getEmail());
+            usuario.setSenha(usuarioDto.getSenha());
+            usuarioRepository.save(usuario);
+        }
+        return ResponseEntity.ok(usuario);
+    }
+
+    public ResponseEntity<Usuario> deletarUsuario(Long id){
+        Usuario usuario = usuarioRepository.findById(id).orElse(null);
+        if(usuario != null){
+            usuarioRepository.delete(usuario);
+        }
+        return ResponseEntity.ok(usuario);
+        
     }
 }
