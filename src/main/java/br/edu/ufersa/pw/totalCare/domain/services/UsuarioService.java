@@ -1,4 +1,4 @@
-package br.edu.ufersa.pw.totalCare.services;
+package br.edu.ufersa.pw.totalCare.domain.services;
 
 import java.time.LocalDateTime;
 import java.util.List;
