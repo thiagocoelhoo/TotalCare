@@ -26,7 +26,7 @@ public class UsuarioController {
     @Autowired
     private UsuarioService usuarioService;
 
-    @GetMapping("/list")
+    @GetMapping("/")
     public ResponseEntity<List<Usuario>> buscarTodos(){
         return usuarioService.buscarTodos();
     }
@@ -36,19 +36,20 @@ public class UsuarioController {
         return usuarioService.buscarPorId(id);
     }
 
-    @PostMapping("/create")
+    @PostMapping("/")
     public ResponseEntity<Usuario> criarUsuario (@RequestBody UsuarioDTO usuarioDto){
 
-    try{
-        Usuario usuarioCriado = usuarioService.criarUsuario(usuarioDto);
-        return ResponseEntity.status(HttpStatus.CREATED).body(usuarioCriado);
-    } catch (Exception e){
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
-    }
+        try{
+            Usuario usuarioCriado = usuarioService.criarUsuario(usuarioDto);
+            return ResponseEntity.status(HttpStatus.CREATED).body(usuarioCriado);
+        } catch (Exception e){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+        }
     }
 
-    @PutMapping("/update")
+    @PutMapping("/")
     public ResponseEntity<Usuario> atualizarUsuario(@RequestBody UsuarioDTO usuarioDto){
+
         try{
             ResponseEntity<Usuario> responseEntity = usuarioService.atualizarUsuario(usuarioDto);
             Usuario usuarioAtualizado = responseEntity.getBody();
@@ -58,8 +59,9 @@ public class UsuarioController {
         }
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<String> deletarUsuario(@PathVariable Long id){
+
         try{
             usuarioService.deletarUsuario(id);
             return ResponseEntity.status(HttpStatus.OK).body("Usuário deletado com sucesso");
