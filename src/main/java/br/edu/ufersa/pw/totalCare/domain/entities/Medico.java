@@ -4,8 +4,6 @@ import br.edu.ufersa.pw.totalCare.api.dtos.MedicoCreateDTO;
 import br.edu.ufersa.pw.totalCare.api.dtos.MedicoDTO;
 import jakarta.persistence.*;
 
-import java.io.Serializable;
-
 @Entity
 @Table(name="medicos")
 public class Medico {

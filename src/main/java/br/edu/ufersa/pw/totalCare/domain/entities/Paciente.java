@@ -3,13 +3,10 @@ package br.edu.ufersa.pw.totalCare.domain.entities;
 import br.edu.ufersa.pw.totalCare.api.dtos.PacienteDTO;
 import jakarta.persistence.*;
 
-import java.io.Serializable;
 
 @Entity
 @Table(name = "paciente")
 public class Paciente {
-    private static final long serialVersionUID = 1L;
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

@@ -1,6 +1,5 @@
 package br.edu.ufersa.pw.totalCare.domain.services;
 
-import br.edu.ufersa.pw.totalCare.api.dtos.ConsultaDTO;
 import br.edu.ufersa.pw.totalCare.api.dtos.MedicoCreateDTO;
 import br.edu.ufersa.pw.totalCare.api.dtos.MedicoDTO;
 import br.edu.ufersa.pw.totalCare.domain.entities.Medico;

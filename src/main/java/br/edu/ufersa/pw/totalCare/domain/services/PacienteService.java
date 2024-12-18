@@ -3,8 +3,6 @@ package br.edu.ufersa.pw.totalCare.domain.services;
 import br.edu.ufersa.pw.totalCare.api.dtos.PacienteDTO;
 import br.edu.ufersa.pw.totalCare.domain.entities.Paciente;
 import br.edu.ufersa.pw.totalCare.domain.repositories.PacienteRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

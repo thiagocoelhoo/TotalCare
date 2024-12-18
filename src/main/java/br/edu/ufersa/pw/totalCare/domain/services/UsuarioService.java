@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import br.edu.ufersa.pw.totalCare.api.dtos.UsuarioDTO;
 import br.edu.ufersa.pw.totalCare.domain.entities.Usuario;
-import br.edu.ufersa.pw.totalCare.domain.repositories.PerfilRepository;
 import br.edu.ufersa.pw.totalCare.domain.repositories.UsuarioRepository;
 
 @Service
@@ -17,9 +16,6 @@ public class UsuarioService {
 
     @Autowired
     UsuarioRepository usuarioRepository;
-
-    @Autowired
-    PerfilRepository perfilRepository;
 
     public ResponseEntity<List<Usuario>> buscarTodos() {
         return ResponseEntity.ok(usuarioRepository.findAll());
