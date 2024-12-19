@@ -1,19 +1,29 @@
+version: '3.8'
+
 services:
   database:
     image: mysql:latest
     environment:
-      MYSQL_DATABASE: ${DB_DATABASE}
-      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${DB_DATABASE}         # Nome do banco de dados
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}  # Senha do root
     ports:
       - 3306:3306
+    networks:
+      - mynetwork
 
   api:
     build: .
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://database:3306/${DB_DATABASE}
-      SPRING_DATASOURCE_USERNAME: root
-      SPRING_DATASOURCE_PASSWORD: ${DB_ROOT_PASSWORD}
+      SPRING_DATASOURCE_URL: jdbc:mysql://database:3306/${DB_DATABASE}  # URL do banco
+      SPRING_DATASOURCE_USERNAME: ${DB_USER}   # Usuário do banco (root)
+      SPRING_DATASOURCE_PASSWORD: ${DB_PASSWORD}  # Senha do banco
     ports:
       - 8080:8080
     depends_on:
       - database
+    networks:
+      - mynetwork
+
+networks:
+  mynetwork:
+    driver: bridge
