@@ -4,6 +4,8 @@ import br.edu.ufersa.pw.totalCare.domain.entities.Medico;
 
 public class MedicoCreateDTO {
     private String crm;
+    private String nome;
+    private String especialidade;
 
     // Construtores
     public MedicoCreateDTO() {}
