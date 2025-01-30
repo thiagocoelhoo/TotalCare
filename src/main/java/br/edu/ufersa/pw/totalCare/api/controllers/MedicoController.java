@@ -24,4 +24,9 @@ public class MedicoController {
     public ResponseEntity<MedicoDTO> criarMedico(@RequestBody MedicoCreateDTO medicoDTO) {
         return ResponseEntity.ok(medicoService.criarMedico(medicoDTO));
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<MedicoDTO> obterMedico(@PathVariable Long id) {
+        return ResponseEntity.ok(medicoService.buscarPorId(id));
+    }
 }
