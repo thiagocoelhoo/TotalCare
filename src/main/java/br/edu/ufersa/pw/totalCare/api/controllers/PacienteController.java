@@ -16,13 +16,13 @@ public class PacienteController {
     @Autowired
     private PacienteService pacienteService;
 
-    @GetMapping("/")
+    @GetMapping("")
     public List<PacienteDTO> buscarTodos() {return pacienteService.buscarTodos();}
 
     @GetMapping("/{id}")
     public PacienteDTO buscarPorId(@PathVariable Long id) {return pacienteService.buscarPorId(id);}
 
-    @PostMapping("/")
+    @PostMapping("")
     public ResponseEntity<Paciente> criarPaciente (@RequestBody PacienteDTO pacienteDTO){
 
         try{
