@@ -10,31 +10,12 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
-
     @Autowired
     JwtAuthenticationFilter jwtAuthenticationFilter;
-
-    @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
- 
-        http.csrf(csrf -> csrf.disable())
-            .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/api/v1/auth/login").permitAll()
-                .requestMatchers("/api/v1/usuarios").authenticated()
-                .anyRequest().authenticated()
-            );
-
-        http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
-        http.cors(cors -> cors.configurationSource(corsConfigurationSource()));
-
-        return http.build();
-    }
 
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
@@ -47,5 +28,21 @@ public class SecurityConfig {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", corsConfig);
         return source;
+    }
+
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        http.csrf(csrf -> csrf.disable())
+            .authorizeHttpRequests(auth -> auth
+                .requestMatchers("/api/v1/auth/login").permitAll()
+                .requestMatchers("/api/v1/auth/logout").permitAll()
+                .requestMatchers("/api/v1/usuarios").authenticated()
+                .anyRequest().authenticated()
+            );
+
+        http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+        http.cors(cors -> cors.configurationSource(corsConfigurationSource()));
+
+        return http.build();
     }
 }
