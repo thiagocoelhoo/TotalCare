@@ -1,4 +1,4 @@
-version: "3.8"
+version: '3.8'
 
 services:
   database:
@@ -17,14 +17,13 @@ services:
       SPRING_DATASOURCE_URL: jdbc:mysql://database:3306/${DB_DATABASE}
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: ${DB_PASSWORD}
-      PORT: ${PORT}  # Usa a variável PORT do Railway
+      PORT: ${PORT}  # Variável configurada pelo Railway
     ports:
-      - "${PORT}:${PORT}"  # Mapeia a porta automaticamente configurada pelo Railway
+      - "${PORT}:${PORT}"  # Variável configurada pelo Railway
     depends_on:
       - database
     networks:
       - mynetwork
-    entrypoint: ["/bin/sh", "-c", "./wait-for-it.sh database:3306 -- java -jar /app.jar"]
 
 networks:
   mynetwork:
