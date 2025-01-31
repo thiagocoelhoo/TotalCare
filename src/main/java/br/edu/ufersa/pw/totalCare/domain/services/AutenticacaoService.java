@@ -1,5 +1,6 @@
 package br.edu.ufersa.pw.totalCare.domain.services;
 
+import br.edu.ufersa.pw.totalCare.api.dtos.UsuarioCreateDTO;
 import br.edu.ufersa.pw.totalCare.domain.entities.Usuario;
 import br.edu.ufersa.pw.totalCare.api.dtos.UsuarioDTO;
 import br.edu.ufersa.pw.totalCare.domain.repositories.UsuarioRepository;
@@ -27,12 +28,13 @@ public class AutenticacaoService {
             throw new RuntimeException("Senha incorreta");
         }
 
-        UsuarioDTO usuarioDTO = new UsuarioDTO(
+        UsuarioCreateDTO usuarioDTO = new UsuarioCreateDTO(
             usuario.getId(),
             usuario.getEmail(),
             usuario.getSenha(),
             usuario.getDataCadastro(),
-            usuario.getPerfil()
+            usuario.getPerfil(),
+            usuario.getTipoUsuario()
         );
 
         return tokenService.generateToken(usuarioDTO);
