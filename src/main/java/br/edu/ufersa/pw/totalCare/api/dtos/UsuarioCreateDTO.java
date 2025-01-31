@@ -1,28 +1,30 @@
 package br.edu.ufersa.pw.totalCare.api.dtos;
 
-import java.time.LocalDateTime;
-
 import br.edu.ufersa.pw.totalCare.domain.entities.Perfil;
 import br.edu.ufersa.pw.totalCare.domain.entities.enums.EPerfil;
 
-public class UsuarioDTO {
+import java.time.LocalDateTime;
+
+public class UsuarioCreateDTO {
 
     private Long id;
     private String email;
+    private String senha;
     private LocalDateTime dataCadastro;
     private Perfil perfil;
     private EPerfil tipoUsuario;
-    private Boolean ativo;
 
     // Construtores
-    public UsuarioDTO() {
+    public UsuarioCreateDTO() {
     }
 
-    public UsuarioDTO(Long id, String email, LocalDateTime dataCadastro, Perfil perfil) {
+    public UsuarioCreateDTO(Long id, String email, String senha, LocalDateTime dataCadastro, Perfil perfil, EPerfil tipoUsuario) {
         this.id = id;
         this.email = email;
+        this.senha = senha;
         this.dataCadastro = dataCadastro;
         // this.perfil = perfil;
+        this.perfil = perfil;
     }
 
     // Getters e Setters
@@ -40,6 +42,14 @@ public class UsuarioDTO {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 
     public LocalDateTime getDataCadastro() {
@@ -64,13 +74,5 @@ public class UsuarioDTO {
 
     public void setTipoUsuario(EPerfil tipoUsuario) {
         this.tipoUsuario = tipoUsuario;
-    }
-
-    public Boolean getAtivo() {
-        return ativo;
-    }
-
-    public void setAtivo(Boolean ativo) {
-        this.ativo = ativo;
     }
 }

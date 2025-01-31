@@ -1,6 +1,8 @@
 package br.edu.ufersa.pw.totalCare.domain.entities;
 
 
+import br.edu.ufersa.pw.totalCare.api.dtos.UsuarioCreateDTO;
+import br.edu.ufersa.pw.totalCare.domain.entities.enums.EPerfil;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -20,8 +22,14 @@ public class Usuario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false, unique = true)
     private String email;
+    @Column(nullable = false)
     private String senha;
+    private Boolean ativo;
+
+    @Column(name = "tipo_usuario")
+    private EPerfil tipoUsuario;
 
     @Column(name = "data_cadastro")
     private LocalDateTime dataCadastro;
@@ -31,6 +39,14 @@ public class Usuario {
     private Perfil perfil;
 
     public Usuario() {
+    }
+
+    public Usuario(UsuarioCreateDTO usuarioCreateDTO) {
+        this.email = usuarioCreateDTO.getEmail();
+        this.senha = usuarioCreateDTO.getSenha();
+        this.dataCadastro = usuarioCreateDTO.getDataCadastro();
+        this.perfil = usuarioCreateDTO.getPerfil();
+        this.tipoUsuario = usuarioCreateDTO.getTipoUsuario();
     }
 
     public Usuario(String email, String senha, LocalDateTime dataCadastro, Perfil perfil) {
@@ -79,5 +95,21 @@ public class Usuario {
 
     public void setPerfil(Perfil perfil) {
         this.perfil = perfil;
+    }
+
+    public EPerfil getTipoUsuario() {
+        return tipoUsuario;
+    }
+
+    public void setTipoUsuario(EPerfil tipoUsuario) {
+        this.tipoUsuario = tipoUsuario;
+    }
+
+    public Boolean getAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(Boolean ativo) {
+        this.ativo = ativo;
     }
 }
