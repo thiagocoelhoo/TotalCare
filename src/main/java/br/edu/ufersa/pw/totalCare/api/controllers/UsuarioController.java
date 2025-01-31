@@ -46,8 +46,9 @@ public class UsuarioController {
         }
     }
 
-    @PutMapping("/")
-    public ResponseEntity<Usuario> atualizarUsuario(@RequestBody UsuarioDTO usuarioDto){
+    @PutMapping("/{id}")
+    public ResponseEntity<Usuario> atualizarUsuario(@PathVariable Long id, @RequestBody UsuarioCreateDTO usuarioDto){
+        usuarioDto.setId(id);
 
         try{
             ResponseEntity<Usuario> responseEntity = usuarioService.atualizarUsuario(usuarioDto);

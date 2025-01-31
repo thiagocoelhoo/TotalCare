@@ -42,11 +42,21 @@ public class UsuarioService {
         return ResponseEntity.ok(usuarioRepository.findById(id).orElse(null));
     }
 
-    public ResponseEntity<Usuario> atualizarUsuario(UsuarioDTO usuarioDto){
+    public ResponseEntity<Usuario> atualizarUsuario(UsuarioCreateDTO usuarioDto){
         Usuario usuario = usuarioRepository.findById(usuarioDto.getId()).orElse(null);
         if(usuario != null){
-            usuario.setEmail(usuarioDto.getEmail());
-            usuario.setSenha(usuarioDto.getSenha());
+            if (usuarioDto.getEmail() != null){
+                usuario.setEmail(usuarioDto.getEmail());
+            }
+
+            if (usuarioDto.getSenha() != null){
+                usuario.setSenha(usuarioDto.getSenha());
+            }
+
+            if (usuarioDto.getTipoUsuario() != null){
+                usuario.setTipoUsuario(usuarioDto.getTipoUsuario());
+            }
+
             usuarioRepository.save(usuario);
         }
         return ResponseEntity.ok(usuario);
