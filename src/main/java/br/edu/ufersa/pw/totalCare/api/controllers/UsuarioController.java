@@ -2,6 +2,7 @@ package br.edu.ufersa.pw.totalCare.api.controllers;
 
 import java.util.List;
 
+import br.edu.ufersa.pw.totalCare.api.dtos.UsuarioCreateDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,7 +26,7 @@ public class UsuarioController {
     @Autowired
     private UsuarioService usuarioService;
 
-    @GetMapping("/")
+    @GetMapping("")
     public ResponseEntity<List<Usuario>> buscarTodos(){
         return usuarioService.buscarTodos();
     }
@@ -35,9 +36,8 @@ public class UsuarioController {
         return usuarioService.buscarPorId(id);
     }
 
-    @PostMapping("/")
-    public ResponseEntity<Usuario> criarUsuario (@RequestBody UsuarioDTO usuarioDto){
-
+    @PostMapping("")
+    public ResponseEntity<Usuario> criarUsuario (@RequestBody UsuarioCreateDTO usuarioDto){
         try{
             Usuario usuarioCriado = usuarioService.criarUsuario(usuarioDto);
             return ResponseEntity.status(HttpStatus.CREATED).body(usuarioCriado);
