@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.util.Date;
 
+import br.edu.ufersa.pw.totalCare.api.dtos.UsuarioCreateDTO;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +20,7 @@ public class TokenService {
     
     @Value("${api.security.token.secret}")
     private String secret;
-    public String generateToken(UsuarioDTO usuario) {
+    public String generateToken(UsuarioCreateDTO usuario) {
         try {
             Algorithm algorithm = Algorithm.HMAC256(secret);
 
@@ -48,7 +49,7 @@ public class TokenService {
     }
 
     private Date generateExpirationDate() {
-        LocalDateTime localDateTime = LocalDateTime.now(ZoneOffset.of("-03:00")).plusHours(2);
+        LocalDateTime localDateTime = LocalDateTime.now(ZoneOffset.of("-03:00")).plusHours(8);
         return Date.from(localDateTime.atZone(ZoneOffset.of("-03:00")).toInstant());
     }
 }
