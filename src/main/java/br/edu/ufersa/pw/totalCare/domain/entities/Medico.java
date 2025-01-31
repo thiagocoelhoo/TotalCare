@@ -24,10 +24,14 @@ public class Medico {
     public Medico(MedicoDTO medicoDTO) {
         this.id = medicoDTO.getId();
         this.crm = medicoDTO.getCrm();
+        this.especialidade = medicoDTO.getEspecialidade();
+        this.nome = medicoDTO.getNome();
     }
 
     public Medico(MedicoCreateDTO medico) {
         this.crm = medico.getCrm();
+        this.nome = medico.getNome();
+        this.especialidade = medico.getEspecialidade();
     }
 
     // Getters and Setters

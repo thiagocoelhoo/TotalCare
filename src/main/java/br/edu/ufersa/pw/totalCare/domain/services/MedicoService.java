@@ -45,7 +45,16 @@ public class MedicoService {
         return new MedicoDTO(medico);
     }
 
-    public MedicoDTO atualizarMedico(MedicoCreateDTO medico) {
-        return null;
+    public MedicoDTO atualizarMedico(MedicoCreateDTO medicoDTO) {
+        Medico medico = medicoRepository.findById(medicoDTO.getId()).orElse(null);
+
+        if (medico != null) {
+            medico.setNome(medicoDTO.getNome());
+            medico.setCrm(medicoDTO.getCrm());
+            medico.setEspecialidade(medicoDTO.getEspecialidade());
+            medicoRepository.save(medico);
+        }
+
+        return new MedicoDTO(medico);
     }
 }
