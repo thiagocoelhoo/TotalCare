@@ -38,7 +38,11 @@ public class MedicoService {
     }
 
     public MedicoDTO deletarMedico(Long id) {
-        return null;
+        Medico medico = medicoRepository.findById(id).orElse(null);
+        if (medico != null) {
+            medicoRepository.delete(medico);
+        }
+        return new MedicoDTO(medico);
     }
 
     public MedicoDTO atualizarMedico(MedicoCreateDTO medico) {

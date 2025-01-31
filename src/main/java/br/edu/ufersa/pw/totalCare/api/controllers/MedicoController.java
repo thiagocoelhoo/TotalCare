@@ -4,6 +4,7 @@ import br.edu.ufersa.pw.totalCare.api.dtos.MedicoCreateDTO;
 import br.edu.ufersa.pw.totalCare.api.dtos.MedicoDTO;
 import br.edu.ufersa.pw.totalCare.domain.services.MedicoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,4 +30,16 @@ public class MedicoController {
     public ResponseEntity<MedicoDTO> obterMedico(@PathVariable Long id) {
         return ResponseEntity.ok(medicoService.buscarPorId(id));
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> removerMedico(@PathVariable Long id) {
+        try{
+            medicoService.deletarMedico(id);
+            return ResponseEntity.status(HttpStatus.OK).body("Médico deletado com sucesso");
+
+        } catch (Exception e){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Erro ao deletar médico");
+        }
+    }
+
 }
