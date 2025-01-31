@@ -1,7 +1,9 @@
 package br.edu.ufersa.pw.totalCare.api.controllers;
 
+import br.edu.ufersa.pw.totalCare.api.dtos.ConsultaDTO;
 import br.edu.ufersa.pw.totalCare.api.dtos.PacienteDTO;
 import br.edu.ufersa.pw.totalCare.domain.entities.Paciente;
+import br.edu.ufersa.pw.totalCare.domain.services.ConsultaService;
 import br.edu.ufersa.pw.totalCare.domain.services.PacienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +17,8 @@ import java.util.List;
 public class PacienteController {
     @Autowired
     private PacienteService pacienteService;
+    @Autowired
+    private ConsultaService consultaService;
 
     @GetMapping("")
     public List<PacienteDTO> buscarTodos() {return pacienteService.buscarTodos();}
@@ -59,5 +63,11 @@ public class PacienteController {
         } catch (Exception e){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Erro ao deletar paciente");
         }
+    }
+
+    @GetMapping("/{id}/consultas")
+    public ResponseEntity<List<ConsultaDTO>> buscarTodasConsultas(@PathVariable Long id) {
+        List<ConsultaDTO> consultas = consultaService.buscarPorPaciente(id);
+        return ResponseEntity.status(HttpStatus.OK).body(consultas);
     }
 }

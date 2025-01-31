@@ -88,4 +88,9 @@ public class ConsultaService {
         return new ConsultaDTO(consulta);
     }
 
+    public List<ConsultaDTO> buscarPorPaciente(Long idPaciente) {
+        Paciente paciente = pacienteRepository.findById(idPaciente).orElse(null);
+        List<Consulta> consultas = consultaRepository.findByPaciente(paciente);
+        return consultas.stream().map(consulta -> new ConsultaDTO(consulta)).collect(Collectors.toList());
+    }
 }
